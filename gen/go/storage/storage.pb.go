@@ -373,6 +373,102 @@ func (x *ImageContent) GetAnalysisMetadata() map[string]string {
 	return nil
 }
 
+type RegisterContentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ContentId     string                 `protobuf:"bytes,1,opt,name=content_id,json=contentId,proto3" json:"content_id,omitempty"`
+	Type          ContentType            `protobuf:"varint,2,opt,name=type,proto3,enum=storage.ContentType" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterContentRequest) Reset() {
+	*x = RegisterContentRequest{}
+	mi := &file_storage_storage_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterContentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterContentRequest) ProtoMessage() {}
+
+func (x *RegisterContentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_storage_storage_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterContentRequest.ProtoReflect.Descriptor instead.
+func (*RegisterContentRequest) Descriptor() ([]byte, []int) {
+	return file_storage_storage_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RegisterContentRequest) GetContentId() string {
+	if x != nil {
+		return x.ContentId
+	}
+	return ""
+}
+
+func (x *RegisterContentRequest) GetType() ContentType {
+	if x != nil {
+		return x.Type
+	}
+	return ContentType_TEXT
+}
+
+type RegisterContentResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegisterContentResponse) Reset() {
+	*x = RegisterContentResponse{}
+	mi := &file_storage_storage_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegisterContentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegisterContentResponse) ProtoMessage() {}
+
+func (x *RegisterContentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_storage_storage_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegisterContentResponse.ProtoReflect.Descriptor instead.
+func (*RegisterContentResponse) Descriptor() ([]byte, []int) {
+	return file_storage_storage_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *RegisterContentResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_storage_storage_proto protoreflect.FileDescriptor
 
 const file_storage_storage_proto_rawDesc = "" +
@@ -400,7 +496,13 @@ const file_storage_storage_proto_rawDesc = "" +
 	"\x11analysis_metadata\x18\x02 \x03(\v2+.storage.ImageContent.AnalysisMetadataEntryR\x10analysisMetadata\x1aC\n" +
 	"\x15AnalysisMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01*\"\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"a\n" +
+	"\x16RegisterContentRequest\x12\x1d\n" +
+	"\n" +
+	"content_id\x18\x01 \x01(\tR\tcontentId\x12(\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x14.storage.ContentTypeR\x04type\"3\n" +
+	"\x17RegisterContentResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess*\"\n" +
 	"\vContentType\x12\b\n" +
 	"\x04TEXT\x10\x00\x12\t\n" +
 	"\x05IMAGE\x10\x01*J\n" +
@@ -410,10 +512,11 @@ const file_storage_storage_proto_rawDesc = "" +
 	"PROCESSING\x10\x01\x12\r\n" +
 	"\tCOMPLETED\x10\x02\x12\n" +
 	"\n" +
-	"\x06FAILED\x10\x032Q\n" +
+	"\x06FAILED\x10\x032\xa7\x01\n" +
 	"\x0eStorageService\x12?\n" +
 	"\n" +
-	"GetContent\x12\x17.storage.ContentRequest\x1a\x18.storage.ContentResponseB\x17Z\x15storage.v1;storagev1 b\x06proto3"
+	"GetContent\x12\x17.storage.ContentRequest\x1a\x18.storage.ContentResponse\x12T\n" +
+	"\x0fRegisterContent\x12\x1f.storage.RegisterContentRequest\x1a .storage.RegisterContentResponseB\x17Z\x15storage.v1;storagev1 b\x06proto3"
 
 var (
 	file_storage_storage_proto_rawDescOnce sync.Once
@@ -428,31 +531,36 @@ func file_storage_storage_proto_rawDescGZIP() []byte {
 }
 
 var file_storage_storage_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_storage_storage_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_storage_storage_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_storage_storage_proto_goTypes = []any{
-	(ContentType)(0),        // 0: storage.ContentType
-	(ProcessingStatus)(0),   // 1: storage.ProcessingStatus
-	(*ContentRequest)(nil),  // 2: storage.ContentRequest
-	(*ContentResponse)(nil), // 3: storage.ContentResponse
-	(*TextContent)(nil),     // 4: storage.TextContent
-	(*ImageContent)(nil),    // 5: storage.ImageContent
-	nil,                     // 6: storage.TextContent.AnalysisMetadataEntry
-	nil,                     // 7: storage.ImageContent.AnalysisMetadataEntry
+	(ContentType)(0),                // 0: storage.ContentType
+	(ProcessingStatus)(0),           // 1: storage.ProcessingStatus
+	(*ContentRequest)(nil),          // 2: storage.ContentRequest
+	(*ContentResponse)(nil),         // 3: storage.ContentResponse
+	(*TextContent)(nil),             // 4: storage.TextContent
+	(*ImageContent)(nil),            // 5: storage.ImageContent
+	(*RegisterContentRequest)(nil),  // 6: storage.RegisterContentRequest
+	(*RegisterContentResponse)(nil), // 7: storage.RegisterContentResponse
+	nil,                             // 8: storage.TextContent.AnalysisMetadataEntry
+	nil,                             // 9: storage.ImageContent.AnalysisMetadataEntry
 }
 var file_storage_storage_proto_depIdxs = []int32{
 	0, // 0: storage.ContentResponse.type:type_name -> storage.ContentType
 	1, // 1: storage.ContentResponse.status:type_name -> storage.ProcessingStatus
 	4, // 2: storage.ContentResponse.text:type_name -> storage.TextContent
 	5, // 3: storage.ContentResponse.image:type_name -> storage.ImageContent
-	6, // 4: storage.TextContent.analysis_metadata:type_name -> storage.TextContent.AnalysisMetadataEntry
-	7, // 5: storage.ImageContent.analysis_metadata:type_name -> storage.ImageContent.AnalysisMetadataEntry
-	2, // 6: storage.StorageService.GetContent:input_type -> storage.ContentRequest
-	3, // 7: storage.StorageService.GetContent:output_type -> storage.ContentResponse
-	7, // [7:8] is the sub-list for method output_type
-	6, // [6:7] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	8, // 4: storage.TextContent.analysis_metadata:type_name -> storage.TextContent.AnalysisMetadataEntry
+	9, // 5: storage.ImageContent.analysis_metadata:type_name -> storage.ImageContent.AnalysisMetadataEntry
+	0, // 6: storage.RegisterContentRequest.type:type_name -> storage.ContentType
+	2, // 7: storage.StorageService.GetContent:input_type -> storage.ContentRequest
+	6, // 8: storage.StorageService.RegisterContent:input_type -> storage.RegisterContentRequest
+	3, // 9: storage.StorageService.GetContent:output_type -> storage.ContentResponse
+	7, // 10: storage.StorageService.RegisterContent:output_type -> storage.RegisterContentResponse
+	9, // [9:11] is the sub-list for method output_type
+	7, // [7:9] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_storage_storage_proto_init() }
@@ -470,7 +578,7 @@ func file_storage_storage_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_storage_storage_proto_rawDesc), len(file_storage_storage_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
