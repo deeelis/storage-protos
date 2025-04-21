@@ -516,7 +516,7 @@ const file_storage_storage_proto_rawDesc = "" +
 	"\x0eStorageService\x12?\n" +
 	"\n" +
 	"GetContent\x12\x17.storage.ContentRequest\x1a\x18.storage.ContentResponse\x12T\n" +
-	"\x0fRegisterContent\x12\x1f.storage.RegisterContentRequest\x1a .storage.RegisterContentResponseB\x17Z\x15storage.v1;storagev1 b\x06proto3"
+	"\x0fRegisterContent\x12\x1f.storage.RegisterContentRequest\x1a .storage.RegisterContentResponseB\x16Z\x14storage.v1;storagev1b\x06proto3"
 
 var (
 	file_storage_storage_proto_rawDescOnce sync.Once

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package storage;
 
-option go_package = "storage.v1;storagev1 ";
+option go_package = "storage.v1;storagev1";
 
 service StorageService {
   rpc GetContent(ContentRequest) returns (ContentResponse);
