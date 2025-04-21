@@ -165,9 +165,9 @@ func (x *ContentRequest) GetContentId() string {
 
 type ContentResponse struct {
 	state     protoimpl.MessageState `protogen:"open.v1"`
-	ContentId string                 `protobuf:"bytes,1,opt,name=content_id,json=contentId,proto3" json:"content_id,omitempty"`
-	Type      ContentType            `protobuf:"varint,2,opt,name=type,proto3,enum=storage.ContentType" json:"type,omitempty"`
-	Status    ProcessingStatus       `protobuf:"varint,3,opt,name=status,proto3,enum=storage.ProcessingStatus" json:"status,omitempty"`
+	ContentId string           `protobuf:"bytes,1,opt,name=content_id,json=contentId,proto3" json:"content_id,omitempty"`
+	Type      ContentType      `protobuf:"varint,2,opt,name=type,proto3,enum=storage.ContentType" json:"type,omitempty"`
+	Status    ProcessingStatus `protobuf:"varint,3,opt,name=status,proto3,enum=storage.ProcessingStatus" json:"status,omitempty"`
 	// Types that are valid to be assigned to Content:
 	//
 	//	*ContentResponse_Text
@@ -375,8 +375,8 @@ func (x *ImageContent) GetAnalysisMetadata() map[string]string {
 
 type RegisterContentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ContentId     string                 `protobuf:"bytes,1,opt,name=content_id,json=contentId,proto3" json:"content_id,omitempty"`
-	Type          ContentType            `protobuf:"varint,2,opt,name=type,proto3,enum=storage.ContentType" json:"type,omitempty"`
+	ContentId     string      `protobuf:"bytes,1,opt,name=content_id,json=contentId,proto3" json:"content_id,omitempty"`
+	Type          ContentType `protobuf:"varint,2,opt,name=type,proto3,enum=storage.ContentType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
